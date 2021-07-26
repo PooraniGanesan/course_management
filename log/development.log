@@ -1,0 +1,1328 @@
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTutors (20210723115751)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "tutors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "course_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_ecbf595870"
+FOREIGN KEY ("course_id")
+  REFERENCES "courses" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_tutors_on_course_id" ON "tutors" ("course_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723115751"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateCourses (20210723115800)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "courses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723115800"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-07-23 13:10:06.527615"], ["updated_at", "2021-07-23 13:10:06.527615"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCourse Create (0.1ms)[0m  [1m[32mINSERT INTO "courses" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "test1"], ["created_at", "2021-07-23 13:10:26.075368"], ["updated_at", "2021-07-23 13:10:26.075368"]]
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCourse Load (0.5ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTutor Create (0.3ms)[0m  [1m[32mINSERT INTO "tutors" ("name", "course_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Test2"], ["course_id", 1], ["created_at", "2021-07-23 13:11:07.094082"], ["updated_at", "2021-07-23 13:11:07.094082"]]
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTutor Create (0.4ms)[0m  [1m[32mINSERT INTO "tutors" ("name", "course_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Test2"], ["course_id", 1], ["created_at", "2021-07-23 13:11:13.385345"], ["updated_at", "2021-07-23 13:11:13.385345"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTutors (20210723115751)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "tutors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "course_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_tutors_on_course_id" ON "tutors" ("course_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723115751"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateCourses (20210723115800)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "courses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723115800"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-07-23 13:48:07.019768"], ["updated_at", "2021-07-23 13:48:07.019768"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "test1"], ["created_at", "2021-07-23 13:48:33.822988"], ["updated_at", "2021-07-23 13:48:33.822988"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTutors (20210723115751)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "tutors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "course_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_tutors_on_course_id" ON "tutors" ("course_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723115751"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateCourses (20210723115800)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "courses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "tutor_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_courses_on_tutor_id" ON "courses" ("tutor_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723115800"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-07-23 13:54:24.295297"], ["updated_at", "2021-07-23 13:54:24.295297"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "test1"], ["created_at", "2021-07-23 13:54:32.234165"], ["updated_at", "2021-07-23 13:54:32.234165"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTutor Create (0.2ms)[0m  [1m[32mINSERT INTO "tutors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test2"], ["created_at", "2021-07-23 13:54:37.822710"], ["updated_at", "2021-07-23 13:54:37.822710"]]
+  [1m[36mCourse Update (0.2ms)[0m  [1m[33mUPDATE "courses" SET "tutor_id" = ?, "updated_at" = ? WHERE "courses"."id" = ?[0m  [["tutor_id", 1], ["updated_at", "2021-07-23 13:54:37.823843"], ["id", 1]]
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTutor Create (0.2ms)[0m  [1m[32mINSERT INTO "tutors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test2"], ["created_at", "2021-07-23 15:16:05.115728"], ["updated_at", "2021-07-23 15:16:05.115728"]]
+  [1m[36mCourse Update (0.1ms)[0m  [1m[33mUPDATE "courses" SET "tutor_id" = ?, "updated_at" = ? WHERE "courses"."id" = ?[0m  [["tutor_id", 2], ["updated_at", "2021-07-23 15:16:05.116538"], ["id", 1]]
+  [1m[36mTRANSACTION (4.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTutor Load (0.2ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" ORDER BY "tutors"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTutor Load (0.2ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" INNER JOIN "courses_tutors" ON "tutors"."id" = "courses_tutors"."tutor_id" WHERE "courses_tutors"."course_id" = ? /* loading for inspect */ LIMIT ?[0m  [["course_id", 1], ["LIMIT", 11]]
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTutor Load (0.2ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" INNER JOIN "courses_tutors" ON "tutors"."id" = "courses_tutors"."tutor_id" WHERE "courses_tutors"."course_id" = ? /* loading for inspect */ LIMIT ?[0m  [["course_id", 1], ["LIMIT", 11]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTutor Load (0.4ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ? /* loading for inspect */ LIMIT ?[0m  [["course_id", 1], ["LIMIT", 11]]
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "courses"."tutor_id" FROM "courses"[0m
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTutor Load (0.0ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ? /* loading for inspect */ LIMIT ?[0m  [["course_id", 1], ["LIMIT", 11]]
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTutor Load (0.3ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 1]]
+  [1m[36mTutor Load (0.3ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" ORDER BY "tutors"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "tutors"."course_id" FROM "tutors"[0m
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTutor Create (0.1ms)[0m  [1m[32mINSERT INTO "tutors" ("name", "course_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Test2"], ["course_id", 1], ["created_at", "2021-07-23 15:19:28.037513"], ["updated_at", "2021-07-23 15:19:28.037513"]]
+  [1m[36mTRANSACTION (3.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTutor Load (0.0ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 1]]
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTutor Create (0.2ms)[0m  [1m[32mINSERT INTO "tutors" ("name", "course_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Test3"], ["course_id", 1], ["created_at", "2021-07-23 15:19:47.363634"], ["updated_at", "2021-07-23 15:19:47.363634"]]
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTutor Load (0.4ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" ORDER BY "tutors"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."tutor_id" = ? LIMIT ?[0m  [["tutor_id", 4], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" ORDER BY "tutors"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ? /* loading for inspect */ LIMIT ?[0m  [["course_id", 1], ["LIMIT", 11]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ? /* loading for inspect */ LIMIT ?[0m  [["course_id", 1], ["LIMIT", 11]]
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTutor Load (0.2ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ? /* loading for inspect */ LIMIT ?[0m  [["course_id", 1], ["LIMIT", 11]]
+  [1m[36mTutor Load (0.5ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" ORDER BY "tutors"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mCourse Load (0.5ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."tutor_id" = ? LIMIT ?[0m  [["tutor_id", 4], ["LIMIT", 1]]
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  [1m[36mTutor Load (0.3ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 1]]
+Started GET "/" for ::1 at 2021-07-24 08:32:22 +0530
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as */*
+  Rendering /usr/share/rvm/gems/ruby-2.7.1/gems/railties-6.1.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/share/rvm/gems/ruby-2.7.1/gems/railties-6.1.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 5.4ms | Allocations: 445)
+Completed 200 OK in 19ms (Views: 10.1ms | ActiveRecord: 0.0ms | Allocations: 3690)
+
+
+Started GET "/courses" for ::1 at 2021-07-24 08:32:29 +0530
+  
+ActionController::RoutingError (uninitialized constant CoursesController
+Did you mean?  CourseController):
+  
+Started GET "/course" for ::1 at 2021-07-24 08:32:54 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/course"):
+  
+Started GET "/courses" for ::1 at 2021-07-24 08:47:14 +0530
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant CoursesController
+Did you mean?  CourseController):
+  
+Started GET "/courses" for ::1 at 2021-07-24 08:47:57 +0530
+Processing by CoursesController#index as */*
+No template found for CoursesController#index, rendering head :no_content
+Completed 204 No Content in 5ms (Allocations: 3913)
+
+
+Started GET "/courses" for ::1 at 2021-07-24 08:48:30 +0530
+Processing by CoursesController#index as */*
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:4:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.8ms | Allocations: 5610)
+
+
+  
+ActiveRecord::AssociationNotFoundError (Association named 'tutor' was not found on Course; perhaps you misspelled it?
+Did you mean?  tutors):
+  
+app/controllers/courses_controller.rb:4:in `index'
+Started GET "/courses" for ::1 at 2021-07-24 08:48:46 +0530
+Processing by CoursesController#index as */*
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:4:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:4:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 1]]
+  ↳ app/controllers/courses_controller.rb:4:in `index'
+Completed 200 OK in 15ms (Views: 0.1ms | ActiveRecord: 1.0ms | Allocations: 11346)
+
+
+Started GET "/courses" for ::1 at 2021-07-24 08:52:16 +0530
+Processing by CoursesController#index as */*
+Completed 200 OK in 1ms (Views: 0.3ms | Allocations: 1175)
+
+
+Started GET "/courses" for ::1 at 2021-07-24 08:52:34 +0530
+Processing by CoursesController#index as */*
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 1]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 9575)
+
+
+Started POST "/courses" for ::1 at 2021-07-24 08:54:21 +0530
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by CoursesController#create as */*
+  Parameters: {"title"=>"FInal Test", "tutor_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}], "course"=>{"title"=>"FInal Test"}}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 0ms (ActiveRecord: 0.5ms | Allocations: 399)
+
+
+  
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  
+actionpack (6.1.4) lib/action_controller/metal/request_forgery_protection.rb:211:in `handle_unverified_request'
+actionpack (6.1.4) lib/action_controller/metal/request_forgery_protection.rb:243:in `handle_unverified_request'
+actionpack (6.1.4) lib/action_controller/metal/request_forgery_protection.rb:238:in `verify_authenticity_token'
+activesupport (6.1.4) lib/active_support/callbacks.rb:427:in `block in make_lambda'
+activesupport (6.1.4) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (6.1.4) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (6.1.4) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (6.1.4) lib/active_support/callbacks.rb:512:in `block in invoke_before'
+activesupport (6.1.4) lib/active_support/callbacks.rb:512:in `each'
+activesupport (6.1.4) lib/active_support/callbacks.rb:512:in `invoke_before'
+activesupport (6.1.4) lib/active_support/callbacks.rb:115:in `block in run_callbacks'
+activesupport (6.1.4) lib/active_support/callbacks.rb:137:in `run_callbacks'
+actionpack (6.1.4) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (6.1.4) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (6.1.4) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (6.1.4) lib/active_support/notifications.rb:203:in `block in instrument'
+activesupport (6.1.4) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (6.1.4) lib/active_support/notifications.rb:203:in `instrument'
+actionpack (6.1.4) lib/action_controller/metal/instrumentation.rb:33:in `process_action'
+actionpack (6.1.4) lib/action_controller/metal/params_wrapper.rb:249:in `process_action'
+activerecord (6.1.4) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.4) lib/abstract_controller/base.rb:165:in `process'
+actionview (6.1.4) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.1.4) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.4) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.4) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.4) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.4) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.4) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+actionpack (6.1.4) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.4) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (6.1.4) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.4) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+rack-mini-profiler (2.3.2) lib/mini_profiler/profiler.rb:384:in `call'
+webpacker (5.4.0) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.0) lib/rack/proxy.rb:63:in `call'
+railties (6.1.4) lib/rails/engine.rb:539:in `call'
+puma (5.3.2) lib/puma/configuration.rb:249:in `call'
+puma (5.3.2) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.3.2) lib/puma/thread_pool.rb:338:in `with_force_shutdown'
+puma (5.3.2) lib/puma/request.rb:76:in `handle_request'
+puma (5.3.2) lib/puma/server.rb:438:in `process_client'
+puma (5.3.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Started POST "/courses" for ::1 at 2021-07-24 08:56:44 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CoursesController#create as */*
+  Parameters: {"title"=>"FInal Test", "tutor_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}], "course"=>{"title"=>"FInal Test"}}
+Can't verify CSRF token authenticity.
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "FInal Test"], ["created_at", "2021-07-24 03:26:44.570779"], ["updated_at", "2021-07-24 03:26:44.570779"]]
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 1.9ms | Allocations: 5696)
+
+
+Started GET "/courses" for ::1 at 2021-07-24 08:56:54 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"title"=>"FInal Test", "tutor_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}], "course"=>{"title"=>"FInal Test"}}
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 1]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 2]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+Completed 200 OK in 24ms (Views: 0.2ms | ActiveRecord: 1.2ms | Allocations: 8822)
+
+
+Started GET "/courses" for ::1 at 2021-07-24 08:57:51 +0530
+  
+NoMethodError (undefined method `accptes_nested_attributes_for' for Course (call 'Course.connection' to establish a connection):Class
+Did you mean?  accepts_nested_attributes_for):
+  
+app/models/course.rb:3:in `<class:Course>'
+app/models/course.rb:1:in `<main>'
+Started GET "/courses" for ::1 at 2021-07-24 08:58:35 +0530
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by CoursesController#index as */*
+  Parameters: {"title"=>"FInal Test1", "tutor_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}], "course"=>{"title"=>"FInal Test1"}}
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 1]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.0ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 2]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 1.1ms | Allocations: 8539)
+
+
+Started POST "/courses" for ::1 at 2021-07-24 08:58:43 +0530
+Processing by CoursesController#create as */*
+  Parameters: {"title"=>"FInal Test1", "tutor_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}], "course"=>{"title"=>"FInal Test1"}}
+Can't verify CSRF token authenticity.
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "FInal Test1"], ["created_at", "2021-07-24 03:28:43.920982"], ["updated_at", "2021-07-24 03:28:43.920982"]]
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 3.9ms | Allocations: 2534)
+
+
+Started GET "/courses" for ::1 at 2021-07-24 08:58:51 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"title"=>"FInal Test1", "tutor_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}], "course"=>{"title"=>"FInal Test1"}}
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.0ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 1]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.0ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 2]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 3554)
+
+
+Started POST "/courses" for ::1 at 2021-07-24 09:01:02 +0530
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by CoursesController#create as */*
+  Parameters: {"title"=>"FInal Test1", "tutor_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}], "course"=>{"title"=>"FInal Test1"}}
+Can't verify CSRF token authenticity.
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/courses_controller.rb:9:in `create'
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "FInal Test1"], ["created_at", "2021-07-24 03:31:02.895457"], ["updated_at", "2021-07-24 03:31:02.895457"]]
+  ↳ app/controllers/courses_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/courses_controller.rb:9:in `create'
+Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 2.3ms | Allocations: 4433)
+
+
+Started POST "/courses" for ::1 at 2021-07-24 09:01:24 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CoursesController#create as */*
+  Parameters: {"title"=>"FInal Test1", "tutor_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}], "course"=>{"title"=>"FInal Test1"}}
+Can't verify CSRF token authenticity.
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/courses_controller.rb:9:in `create'
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "FInal Test1"], ["created_at", "2021-07-24 03:31:24.091018"], ["updated_at", "2021-07-24 03:31:24.091018"]]
+  ↳ app/controllers/courses_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/courses_controller.rb:9:in `create'
+Completed 200 OK in 21ms (Views: 0.1ms | ActiveRecord: 2.3ms | Allocations: 5742)
+
+
+Started POST "/courses" for ::1 at 2021-07-24 09:02:13 +0530
+Processing by CoursesController#create as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutor_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+Can't verify CSRF token authenticity.
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 954)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'tutor_attributes' for Course.):
+  
+app/controllers/courses_controller.rb:8:in `create'
+Started POST "/courses" for ::1 at 2021-07-24 09:02:34 +0530
+Processing by CoursesController#create as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutor_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :tutor_attributes[0m
+[31mUnpermitted parameter: :tutor_attributes[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/courses_controller.rb:9:in `create'
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "FInal Test1"], ["created_at", "2021-07-24 03:32:34.480158"], ["updated_at", "2021-07-24 03:32:34.480158"]]
+  ↳ app/controllers/courses_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/courses_controller.rb:9:in `create'
+Completed 200 OK in 14ms (Views: 0.2ms | ActiveRecord: 2.5ms | Allocations: 5974)
+
+
+Started POST "/courses" for ::1 at 2021-07-24 09:03:46 +0530
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CoursesController#create as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutor_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :tutor_attributes[0m
+[31mUnpermitted parameter: :tutor_attributes[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/courses_controller.rb:9:in `create'
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "FInal Test1"], ["created_at", "2021-07-24 03:33:46.845614"], ["updated_at", "2021-07-24 03:33:46.845614"]]
+  ↳ app/controllers/courses_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/courses_controller.rb:9:in `create'
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 2.1ms | Allocations: 6195)
+
+
+Started POST "/courses" for ::1 at 2021-07-24 09:04:01 +0530
+Processing by CoursesController#create as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+Can't verify CSRF token authenticity.
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/courses_controller.rb:9:in `create'
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "FInal Test1"], ["created_at", "2021-07-24 03:34:01.878386"], ["updated_at", "2021-07-24 03:34:01.878386"]]
+  ↳ app/controllers/courses_controller.rb:9:in `create'
+  [1m[36mTutor Create (1.3ms)[0m  [1m[32mINSERT INTO "tutors" ("name", "course_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Poo"], ["course_id", 8], ["created_at", "2021-07-24 03:34:01.883757"], ["updated_at", "2021-07-24 03:34:01.883757"]]
+  ↳ app/controllers/courses_controller.rb:9:in `create'
+  [1m[36mTutor Create (0.1ms)[0m  [1m[32mINSERT INTO "tutors" ("name", "course_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Rani"], ["course_id", 8], ["created_at", "2021-07-24 03:34:01.887262"], ["updated_at", "2021-07-24 03:34:01.887262"]]
+  ↳ app/controllers/courses_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/courses_controller.rb:9:in `create'
+Completed 200 OK in 41ms (Views: 0.1ms | ActiveRecord: 5.7ms | Allocations: 10914)
+
+
+Started GET "/courses" for ::1 at 2021-07-24 09:04:22 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 1]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.0ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 2]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.0ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.0ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 4]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.0ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 5]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.0ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 6]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.0ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 7]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.0ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 8]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+Completed 200 OK in 11ms (Views: 0.4ms | ActiveRecord: 0.5ms | Allocations: 8582)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "courses"[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE TABLE "courses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "tutor_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE INDEX "index_courses_on_tutor_id" ON "courses" ("tutor_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "tutors"[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "tutors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "course_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE INDEX "index_tutors_on_course_id" ON "tutors" ("course_id")[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210723115800)[0m
+  [1m[35m (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210723115751);
+
+[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-07-24 03:34:44.534937"], ["updated_at", "2021-07-24 03:34:44.534937"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "1bc6c1a3b0952f673533d5a82bc001575798b289"], ["created_at", "2021-07-24 03:34:44.539341"], ["updated_at", "2021-07-24 03:34:44.539341"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "courses"[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "courses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "tutor_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_courses_on_tutor_id" ON "courses" ("tutor_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "tutors"[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "tutors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "course_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE INDEX "index_tutors_on_course_id" ON "tutors" ("course_id")[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210723115800)[0m
+  [1m[35m (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210723115751);
+
+[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-07-24 03:34:44.561447"], ["updated_at", "2021-07-24 03:34:44.561447"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-07-24 03:34:44.566082"], ["key", "environment"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "1bc6c1a3b0952f673533d5a82bc001575798b289"], ["created_at", "2021-07-24 03:34:44.570125"], ["updated_at", "2021-07-24 03:34:44.570125"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/courses" for ::1 at 2021-07-24 09:05:01 +0530
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 1683)
+
+
+Started GET "/courses" for ::1 at 2021-07-24 09:55:02 +0530
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 1683)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTutors (20210723115751)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "tutors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "course_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_tutors_on_course_id" ON "tutors" ("course_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723115751"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateCourses (20210723115800)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "courses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210723115800"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-07-26 03:08:46.350682"], ["updated_at", "2021-07-26 03:08:46.350682"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "courses"[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "courses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "tutors"[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "tutors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "course_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE INDEX "index_tutors_on_course_id" ON "tutors" ("course_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "09f5a9e1a79e29a1c4d9060409996d4c3de5739e"], ["created_at", "2021-07-26 03:25:45.699024"], ["updated_at", "2021-07-26 03:25:45.699024"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "courses"[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "courses" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "tutors"[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "tutors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "course_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE INDEX "index_tutors_on_course_id" ON "tutors" ("course_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "development"], ["updated_at", "2021-07-26 03:25:45.712648"], ["key", "environment"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (4.9ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-07-26 03:25:45.715854"], ["key", "environment"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/courses" for ::1 at 2021-07-26 09:06:45 +0530
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CoursesController#create as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+Can't verify CSRF token authenticity.
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "FInal Test1"], ["created_at", "2021-07-26 03:36:45.685037"], ["updated_at", "2021-07-26 03:36:45.685037"]]
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mTutor Create (0.1ms)[0m  [1m[32mINSERT INTO "tutors" ("name", "course_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Poo"], ["course_id", 1], ["created_at", "2021-07-26 03:36:45.687242"], ["updated_at", "2021-07-26 03:36:45.687242"]]
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mTutor Create (0.1ms)[0m  [1m[32mINSERT INTO "tutors" ("name", "course_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Rani"], ["course_id", 1], ["created_at", "2021-07-26 03:36:45.688604"], ["updated_at", "2021-07-26 03:36:45.688604"]]
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+Completed 200 OK in 20ms (Views: 0.4ms | ActiveRecord: 2.8ms | Allocations: 13862)
+
+
+Started POST "/courses" for ::1 at 2021-07-26 09:11:14 +0530
+Processing by CoursesController#create as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "FInal Test1"], ["created_at", "2021-07-26 03:41:14.494801"], ["updated_at", "2021-07-26 03:41:14.494801"]]
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mTutor Create (0.1ms)[0m  [1m[32mINSERT INTO "tutors" ("name", "course_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Poo"], ["course_id", 2], ["created_at", "2021-07-26 03:41:14.496974"], ["updated_at", "2021-07-26 03:41:14.496974"]]
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mTutor Create (0.1ms)[0m  [1m[32mINSERT INTO "tutors" ("name", "course_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Rani"], ["course_id", 2], ["created_at", "2021-07-26 03:41:14.498243"], ["updated_at", "2021-07-26 03:41:14.498243"]]
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+Completed 201 Created in 15ms (Views: 0.2ms | ActiveRecord: 2.4ms | Allocations: 11099)
+
+
+Started POST "/courses" for ::1 at 2021-07-26 09:11:51 +0530
+Processing by CoursesController#create as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mCourse Create (0.1ms)[0m  [1m[32mINSERT INTO "courses" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "FInal Test1"], ["created_at", "2021-07-26 03:41:51.256178"], ["updated_at", "2021-07-26 03:41:51.256178"]]
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mTutor Create (0.1ms)[0m  [1m[32mINSERT INTO "tutors" ("name", "course_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Poo"], ["course_id", 3], ["created_at", "2021-07-26 03:41:51.258304"], ["updated_at", "2021-07-26 03:41:51.258304"]]
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mTutor Create (0.1ms)[0m  [1m[32mINSERT INTO "tutors" ("name", "course_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Rani"], ["course_id", 3], ["created_at", "2021-07-26 03:41:51.259682"], ["updated_at", "2021-07-26 03:41:51.259682"]]
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+Completed 201 Created in 20ms (Views: 0.1ms | ActiveRecord: 2.2ms | Allocations: 11025)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 09:21:05 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 1]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 2]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 0.5ms | Allocations: 5070)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 09:21:41 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 1]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.0ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 2]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.0ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 1.1ms | Allocations: 12462)
+
+
+  
+NoMethodError (undefined method `paginate' for #<CoursesController:0x0000000000bf90>):
+  
+app/controllers/courses_controller.rb:3:in `index'
+Started GET "/courses" for ::1 at 2021-07-26 09:22:19 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 1]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 2]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 1.1ms | Allocations: 15207)
+
+
+  
+NoMethodError (undefined method `paginate' for #<CoursesController:0x00000000009330>):
+  
+app/controllers/courses_controller.rb:3:in `index'
+Started GET "/courses" for ::1 at 2021-07-26 09:25:15 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:4:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 1]]
+  ↳ app/controllers/courses_controller.rb:4:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 2]]
+  ↳ app/controllers/courses_controller.rb:4:in `index'
+  [1m[36mTutor Load (0.0ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:4:in `index'
+Completed 200 OK in 18ms (Views: 0.3ms | ActiveRecord: 0.9ms | Allocations: 13190)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 09:28:13 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+Completed 500 Internal Server Error in 1ms (Allocations: 1058)
+
+
+  
+NoMethodError (undefined method `page' for nil:NilClass):
+  
+app/controllers/courses_controller.rb:4:in `index'
+Started GET "/courses" for ::1 at 2021-07-26 09:28:52 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+Completed 500 Internal Server Error in 1ms (Allocations: 1144)
+
+
+  
+NoMethodError (undefined method `page' for nil:NilClass):
+  
+app/controllers/courses_controller.rb:5:in `index'
+Started GET "/courses" for ::1 at 2021-07-26 09:29:17 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+Completed 500 Internal Server Error in 1ms (Allocations: 1065)
+
+
+  
+NoMethodError (undefined method `page' for nil:NilClass):
+  
+app/controllers/courses_controller.rb:5:in `index'
+Started GET "/courses" for ::1 at 2021-07-26 09:29:46 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.5ms | Allocations: 3313)
+
+
+  
+NoMethodError (undefined method `count' for nil:NilClass):
+  
+app/controllers/courses_controller.rb:5:in `index'
+Started GET "/courses" for ::1 at 2021-07-26 09:30:00 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 26], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 14ms (Views: 0.5ms | ActiveRecord: 1.1ms | Allocations: 10429)
+
+
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /* loading for inspect */ LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /* loading for inspect */ LIMIT ? OFFSET ?[0m  [["LIMIT", 3], ["OFFSET", 0]]
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /* loading for inspect */ LIMIT ? OFFSET ?[0m  [["LIMIT", 3], ["OFFSET", 0]]
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3]]
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 3], ["OFFSET", 0]]
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3]]
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 3], ["OFFSET", 0]]
+  [1m[36mTutor Load (0.4ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3]]
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  [1m[36mTutor Load (0.4ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?)[0m  [["course_id", 1], ["course_id", 2]]
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?)[0m  [["course_id", 1], ["course_id", 2]]
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" /* loading for inspect */ LIMIT ? OFFSET ?[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?)[0m  [["course_id", 1], ["course_id", 2]]
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  [1m[36mTutor Load (0.4ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?)[0m  [["course_id", 1], ["course_id", 2]]
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+Started GET "/courses" for ::1 at 2021-07-26 09:40:53 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 26], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 11ms (Views: 0.4ms | ActiveRecord: 0.5ms | Allocations: 9055)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 09:41:15 +0530
+  
+SyntaxError (/home/pooraniganeshan/personal/course_management/app/controllers/courses_controller.rb:5: syntax error, unexpected '(', expecting `end'
+	  paginate json: @courses(includes: :tutors),links: { t...
+	                         ^
+):
+  
+app/controllers/courses_controller.rb:5: syntax error, unexpected '(', expecting `end'
+app/controllers/courses_controller.rb:5: syntax error, unexpected '(', expecting `end'
+app/controllers/courses_controller.rb:5: syntax error, unexpected '(', expecting `end'
+Started GET "/courses" for ::1 at 2021-07-26 09:41:38 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 9588)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 09:41:50 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 13ms (Views: 0.2ms | ActiveRecord: 1.4ms | Allocations: 9463)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 09:42:40 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?)[0m  [["course_id", 1], ["course_id", 2]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT 1 AS one FROM "courses" LIMIT ? OFFSET ?) subquery_for_count[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 13ms (Views: 0.2ms | ActiveRecord: 1.2ms | Allocations: 9524)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 09:43:25 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?)[0m  [["course_id", 1], ["course_id", 2]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 1.1ms | Allocations: 8242)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 09:43:42 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?)[0m  [["course_id", 1], ["course_id", 2]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 1.2ms | Allocations: 8208)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 09:43:57 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 3767)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 09:45:06 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.5ms | Allocations: 3839)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 09:45:21 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+Completed 500 Internal Server Error in 24ms (Allocations: 68289)
+
+
+  
+SystemStackError (stack level too deep):
+  
+app/controllers/courses_controller.rb:5:in `index'
+Started GET "/courses" for ::1 at 2021-07-26 09:45:50 +0530
+Started GET "/courses" for ::1 at 2021-07-26 09:47:17 +0530
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 1]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 2]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.0ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+Completed 200 OK in 19ms (Views: 0.3ms | ActiveRecord: 1.1ms | Allocations: 13092)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 09:47:37 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test1", "tutors_attributes"=>[{"name"=>"Poo"}, {"name"=>"Rani"}]}}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 3], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 1]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 2]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+Completed 200 OK in 16ms (Views: 0.3ms | ActiveRecord: 1.5ms | Allocations: 10448)
+
+
+Started POST "/courses" for ::1 at 2021-07-26 09:47:55 +0530
+Processing by CoursesController#create as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"name"=>"Rani"}]}}
+Can't verify CSRF token authenticity.
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "FInal Test2"], ["created_at", "2021-07-26 04:17:55.699652"], ["updated_at", "2021-07-26 04:17:55.699652"]]
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mTutor Create (0.1ms)[0m  [1m[32mINSERT INTO "tutors" ("name", "course_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Poo1"], ["course_id", 4], ["created_at", "2021-07-26 04:17:55.702729"], ["updated_at", "2021-07-26 04:17:55.702729"]]
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mTutor Create (0.1ms)[0m  [1m[32mINSERT INTO "tutors" ("name", "course_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Rani"], ["course_id", 4], ["created_at", "2021-07-26 04:17:55.704338"], ["updated_at", "2021-07-26 04:17:55.704338"]]
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/courses_controller.rb:8:in `create'
+Completed 201 Created in 13ms (Views: 0.1ms | ActiveRecord: 3.8ms | Allocations: 5297)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 09:48:01 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"name"=>"Rani"}]}}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 3], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 1]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 2]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+Completed 200 OK in 9ms (Views: 0.4ms | ActiveRecord: 0.5ms | Allocations: 4055)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 09:48:40 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"name"=>"Rani"}]}}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 3], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+Completed 200 OK in 13ms (Views: 0.3ms | ActiveRecord: 1.3ms | Allocations: 9585)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 09:50:54 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"name"=>"Rani"}]}}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 3], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:3:in `index'
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.1ms | Allocations: 11214)
+
+
+  
+NoMethodError (undefined method `paginate' for #<CoursesController:0x0000000000c828>):
+  
+app/controllers/courses_controller.rb:3:in `index'
+Started GET "/courses" for ::1 at 2021-07-26 09:51:52 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"name"=>"Rani"}]}}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 3], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 13ms (Views: 0.3ms | ActiveRecord: 1.3ms | Allocations: 9499)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 09:52:12 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"name"=>"Rani"}]}}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 3], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 0.4ms | ActiveRecord: 1.0ms | Allocations: 9136)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 09:52:12 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"name"=>"Rani"}]}}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 3], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.3ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 9ms (Views: 0.7ms | ActiveRecord: 0.4ms | Allocations: 2867)
+
+
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+Started GET "/courses" for ::1 at 2021-07-26 10:09:18 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"name"=>"Rani"}]}}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 3], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 0.3ms | ActiveRecord: 1.0ms | Allocations: 11886)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 10:12:00 +0530
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+NameError (uninitialized constant Rails::Pagination):
+  
+app/controllers/courses_controller.rb:2:in `<class:CoursesController>'
+app/controllers/courses_controller.rb:1:in `<main>'
+Started GET "/courses" for ::1 at 2021-07-26 10:13:29 +0530
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"name"=>"Rani"}]}}
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 3], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.2ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 17ms (Views: 0.3ms | ActiveRecord: 1.0ms | Allocations: 11772)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 10:14:50 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"name"=>"Rani"}]}}
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 3], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 18ms (Views: 0.5ms | ActiveRecord: 1.2ms | Allocations: 11885)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 10:14:57 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"name"=>"Rani"}]}}
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 3], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 2886)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 10:15:14 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"name"=>"Rani"}]}}
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 3], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 2884)
+
+
+Started GET "/courses" for ::1 at 2021-07-26 10:20:41 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"name"=>"Rani"}]}}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.2ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3], ["course_id", 4]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 10ms (Views: 0.3ms | ActiveRecord: 0.4ms | Allocations: 8869)
+
+
+Started GET "/courses?page=1&per_page=1" for ::1 at 2021-07-26 10:21:01 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"name"=>"Rani"}]}, "page"=>"1", "per_page"=>"1"}
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 1], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 1]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 2352)
+
+
+Started GET "/courses?page=1&per_page=1" for ::1 at 2021-07-26 11:05:38 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"name"=>"Rani"}]}, "page"=>"1", "per_page"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 1], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ?[0m  [["course_id", 1]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 7741)
+
+
+Started GET "/courses?page=1&per_page=2" for ::1 at 2021-07-26 11:06:06 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"name"=>"Rani"}]}, "page"=>"1", "per_page"=>"2"}
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" LIMIT ? OFFSET ?[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.2ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?)[0m  [["course_id", 1], ["course_id", 2]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 2480)
+
+
+Started GET "/courses?page=1&per_page=2" for ::1 at 2021-07-26 11:08:24 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"name"=>"Rani"}]}, "page"=>"1", "per_page"=>"2"}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3], ["course_id", 4]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 1.1ms | Allocations: 9212)
+
+
+Started GET "/courses?page=1&per_page=2" for ::1 at 2021-07-26 11:20:23 +0530
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"id"=>4, "name"=>"Rani1"}]}, "page"=>"1", "per_page"=>"2"}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.2ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3], ["course_id", 4]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 8544)
+
+
+Started POST "/courses?page=1&per_page=2" for ::1 at 2021-07-26 11:20:38 +0530
+Processing by CoursesController#create as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"id"=>4, "name"=>"Rani1"}]}, "page"=>"1", "per_page"=>"2"}
+Can't verify CSRF token authenticity.
+Completed 404 Not Found in 2ms (ActiveRecord: 0.0ms | Allocations: 1660)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Tutor with ID=4 for Course with ID=):
+  
+app/controllers/courses_controller.rb:9:in `create'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" ORDER BY "courses"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" = ? /* loading for inspect */ LIMIT ?[0m  [["course_id", 4], ["LIMIT", 11]]
+Started POST "/courses?page=1&per_page=2" for ::1 at 2021-07-26 11:21:26 +0530
+Processing by CoursesController#create as */*
+  Parameters: {"course"=>{"title"=>"FInal Test2", "tutors_attributes"=>[{"name"=>"Poo1"}, {"id"=>8, "name"=>"Rani1"}]}, "page"=>"1", "per_page"=>"2"}
+Can't verify CSRF token authenticity.
+Completed 404 Not Found in 2ms (ActiveRecord: 0.0ms | Allocations: 1280)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Tutor with ID=8 for Course with ID=):
+  
+app/controllers/courses_controller.rb:9:in `create'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+Started POST "/courses?page=1&per_page=2" for ::1 at 2021-07-26 11:23:50 +0530
+Processing by CoursesController#create as */*
+  Parameters: {"course"=>{"title"=>"FInal Test3", "tutors_attributes"=>[{"name"=>"Poo1"}, {"id"=>8, "name"=>"Rani1"}]}, "page"=>"1", "per_page"=>"2"}
+Can't verify CSRF token authenticity.
+[31mUnpermitted parameter: :id[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/courses_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/courses_controller.rb:10:in `create'
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "FInal Test3"], ["created_at", "2021-07-26 05:53:50.249091"], ["updated_at", "2021-07-26 05:53:50.249091"]]
+  ↳ app/controllers/courses_controller.rb:10:in `create'
+  [1m[36mTutor Create (0.1ms)[0m  [1m[32mINSERT INTO "tutors" ("name", "course_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Poo1"], ["course_id", 5], ["created_at", "2021-07-26 05:53:50.251514"], ["updated_at", "2021-07-26 05:53:50.251514"]]
+  ↳ app/controllers/courses_controller.rb:10:in `create'
+  [1m[36mTutor Create (0.1ms)[0m  [1m[32mINSERT INTO "tutors" ("name", "course_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Rani1"], ["course_id", 5], ["created_at", "2021-07-26 05:53:50.252944"], ["updated_at", "2021-07-26 05:53:50.252944"]]
+  ↳ app/controllers/courses_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/courses_controller.rb:10:in `create'
+Completed 201 Created in 16ms (Views: 0.2ms | ActiveRecord: 3.0ms | Allocations: 11406)
+
+
+Started GET "/courses?page=1&per_page=2" for ::1 at 2021-07-26 11:28:33 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CoursesController#index as */*
+  Parameters: {"course"=>{"title"=>"FInal Test3", "tutors_attributes"=>[{"name"=>"Poo1"}, {"id"=>8, "name"=>"Rani1"}]}, "page"=>"1", "per_page"=>"2"}
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+  [1m[36mTutor Load (0.1ms)[0m  [1m[34mSELECT "tutors".* FROM "tutors" WHERE "tutors"."course_id" IN (?, ?, ?, ?, ?)[0m  [["course_id", 1], ["course_id", 2], ["course_id", 3], ["course_id", 4], ["course_id", 5]]
+  ↳ app/controllers/courses_controller.rb:5:in `index'
+Completed 200 OK in 36ms (Views: 0.3ms | ActiveRecord: 1.0ms | Allocations: 12171)
+
+
